@@ -17,8 +17,8 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
-    private const val BASE_URL = "https://api.publicapis.org/"
+object AppTestModule {
+    private const val BASE_URL = "http://127.0.0.1:8080"
 
     @Provides
     @Singleton
@@ -37,9 +37,7 @@ object AppModule {
         OkHttpClient
             .Builder()
             .addInterceptor(httpLoggingInterceptor)
-            .connectTimeout(60, TimeUnit.SECONDS)
-            .readTimeout(30, TimeUnit.SECONDS)
-            .writeTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(3, TimeUnit.SECONDS)
             .build()
 
     @Provides

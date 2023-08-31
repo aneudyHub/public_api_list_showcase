@@ -12,7 +12,9 @@ val materialVersion by extra { "1.9.0" }
 val ktxExtensionVersion by extra { "2.2.0" }
 val mockitoVersion by extra { "3.+" }
 val jUnitVersion by extra { "4.13.2" }
-val navigationCompose by extra { "2.7.1" }
+val navigationComposeVersion by extra { "2.7.1" }
+val mockServerVersion by extra { "3.12.0" }
+val testRunnerVersion by extra { "1.5.2" }
 
 plugins {
     id("com.android.application") version "8.1.0" apply false

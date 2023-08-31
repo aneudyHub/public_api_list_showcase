@@ -10,7 +10,9 @@ val composeVersion: String by rootProject.extra
 val ktxExtensionVersion: String by rootProject.extra
 val mockitoVersion: String by rootProject.extra
 val jUnitVersion: String by rootProject.extra
-val navigationCompose: String by rootProject.extra
+val navigationComposeVersion: String by rootProject.extra
+val mockServerVersion: String by rootProject.extra
+val testRunnerVersion: String by rootProject.extra
 
 plugins {
     id("com.android.application")
@@ -30,7 +32,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.example.public_apis_list_showcase.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -76,7 +78,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
-    implementation("androidx.navigation:navigation-compose:$navigationCompose")
+    implementation("androidx.navigation:navigation-compose:$navigationComposeVersion")
 
     //Hilt
     implementation("com.google.dagger:hilt-android:$hiltVersion")
@@ -102,4 +104,12 @@ dependencies {
     testImplementation("junit:junit:$jUnitVersion")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
     testImplementation("org.mockito:mockito-core:$mockitoVersion")
+
+
+    // Android Test
+    androidTestImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
+    kaptAndroidTest("com.google.dagger:hilt-compiler:$hiltVersion")
+    androidTestImplementation("com.squareup.okhttp3:mockwebserver:$mockServerVersion")
+    implementation("androidx.test:runner:$testRunnerVersion")
+    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
 }
