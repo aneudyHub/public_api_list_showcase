@@ -19,6 +19,7 @@
 
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="fullSensor"
             android:exported="true"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.Public_apis_list_showcase">
