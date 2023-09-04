@@ -86,7 +86,7 @@ class GetApisListUseCaseTest {
         `when`(publicApisSourceRepository.getEntries()).thenReturn(mockResponse)
         useCaseResponse = getApisListUseCase("")
         errorResponse = (useCaseResponse as UseCaseResult.Error).errorType
-        Assert.assertEquals(UseCaseErrorType.SERVER_ERROR, errorResponse)
+        Assert.assertEquals(UseCaseErrorType.REQUEST_TIMEOUT, errorResponse)
     }
 
 

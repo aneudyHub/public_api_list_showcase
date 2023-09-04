@@ -1,6 +1,7 @@
 package com.example.public_apis_list_showcase.presentation
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.public_apis_list_showcase.data.remote.models.Entry
 import com.example.public_apis_list_showcase.domain.GetApisListUseCase
 import com.example.public_apis_list_showcase.domain.models.UseCaseResult
@@ -10,13 +11,11 @@ import com.example.public_apis_list_showcase.ui.navigation.Navigator
 import com.example.public_apis_list_showcase.ui.navigation.Routes
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -34,31 +33,23 @@ class HomeScreenViewModel @Inject constructor(
         getApisList()
     }
 
-    private fun getApisList(filterText: String = "") {
+    internal fun getApisList(filterText: String = "") {
         job.cancel()
         job = Job()
-        CoroutineScope(Dispatchers.IO + job).launch {
-            withContext(Dispatchers.Main) {
-                _uiState.update { it.copy(isLoading = true, errorResourceId = null) }
-            }
+        _uiState.update { it.copy(isLoading = true, errorResourceId = null) }
+        CoroutineScope(viewModelScope.coroutineContext + job).launch {
             when (val apisList = getApisListUseCase(filterText)) {
                 is UseCaseResult.Success -> {
-                    withContext(Dispatchers.Main) {
-                        _uiState.update { it.copy(isLoading = false, apisList = apisList.data) }
-                    }
-
+                    _uiState.update { it.copy(isLoading = false, apisList = apisList.data) }
                 }
 
                 is UseCaseResult.Error -> {
-                    withContext(Dispatchers.Main) {
-                        _uiState.update {
-                            it.copy(
-                                isLoading = false,
-                                errorResourceId = apisList.errorType.getResourceId()
-                            )
-                        }
+                    _uiState.update {
+                        it.copy(
+                            isLoading = false,
+                            errorResourceId = apisList.errorType.getResourceId()
+                        )
                     }
-
                 }
             }
         }
