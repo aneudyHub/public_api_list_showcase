@@ -23,6 +23,7 @@ class PublicApisSourceRepositoryImpl @Inject constructor(
                 RepositoryResponse.Error(error)
             }
         } catch (timeout: SocketTimeoutException) {
+            timeout.printStackTrace()
             return RepositoryResponse.Error(HttpResponseErrorCode.REQUEST_TIMEOUT)
         } catch (e: Exception) {
             return RepositoryResponse.Error(HttpResponseErrorCode.THROWN_EXCEPTION)

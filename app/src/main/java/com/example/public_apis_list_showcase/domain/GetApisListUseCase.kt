@@ -34,8 +34,9 @@ class GetApisListUseCase @Inject constructor(
     private fun handleErrorResponse(httpResponseErrorCode: HttpResponseErrorCode): UseCaseErrorType {
         return when (httpResponseErrorCode) {
             HttpResponseErrorCode.BAD_REQUEST,
-            HttpResponseErrorCode.INTERNAL_SERVER_ERROR,
-            HttpResponseErrorCode.REQUEST_TIMEOUT -> UseCaseErrorType.SERVER_ERROR
+            HttpResponseErrorCode.INTERNAL_SERVER_ERROR -> UseCaseErrorType.SERVER_ERROR
+
+            HttpResponseErrorCode.REQUEST_TIMEOUT -> UseCaseErrorType.REQUEST_TIMEOUT
 
             HttpResponseErrorCode.UNKNOWN, HttpResponseErrorCode.THROWN_EXCEPTION -> UseCaseErrorType.THROWN_EXCEPTION
 
