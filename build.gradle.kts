@@ -15,6 +15,7 @@ val jUnitVersion by extra { "4.13.2" }
 val navigationComposeVersion by extra { "2.7.1" }
 val mockServerVersion by extra { "3.12.0" }
 val testRunnerVersion by extra { "1.5.2" }
+val navigationHiltComposeVersion by extra { "1.0.0" }
 
 plugins {
     id("com.android.application") version "8.1.0" apply false

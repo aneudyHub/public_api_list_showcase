@@ -13,6 +13,7 @@ val jUnitVersion: String by rootProject.extra
 val navigationComposeVersion: String by rootProject.extra
 val mockServerVersion: String by rootProject.extra
 val testRunnerVersion: String by rootProject.extra
+val navigationHiltComposeVersion: String by rootProject.extra
 
 plugins {
     id("com.android.application")
@@ -83,6 +84,7 @@ dependencies {
     //Hilt
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     kapt("com.google.dagger:hilt-compiler:$hiltVersion")
+    implementation("androidx.hilt:hilt-navigation-compose:$navigationHiltComposeVersion")
 
     //  Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")

@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">public_apis_list_showcase</string>
     <string name="title_activity_main">MainActivity</string>
+
+    <string name="home_screen_name">Apis List</string>
+    <string name="details_screen_name">Api Content</string>
+    <string name="filter">Filter by Name or Description</string>
+    <string name="items_found_count">%s items found</string>
+
+    <string name="network_unexpected_error">Unexpected Error, please try it again.</string>
+    <string name="network_server_error">Server Error, try it later.</string>
+    <string name="network_timeout">Request Timeout, please try it again.</string>
+
+    <string name="web_view_render_error">Failed to load the page. Please try again.</string>
 </resources>
